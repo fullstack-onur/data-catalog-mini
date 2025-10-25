@@ -22,6 +22,7 @@ The goal is to provide a modern, responsive, and modular interface for the Data 
 
 ## 🏗️ Project Structure
 
+```
 src/
 ├── api/ # Axios base instance and endpoint services
 ├── assets/ # Static assets (images, icons, etc.)
@@ -36,6 +37,7 @@ src/
 ├── main.jsx # ReactDOM entry point
 └── index.css # Global styles
 
+```
 ---
 
 ## ⚙️ Development
