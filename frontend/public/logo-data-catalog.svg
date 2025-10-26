@@ -1,0 +1,71 @@
+<svg width="220" height="60" viewBox="0 0 220 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Data Catalog Mini Logo">
+  <defs>
+    <!-- mavi gradient -->
+    <linearGradient id="gradBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="50%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#60a5fa"/>
+    </linearGradient>
+
+    <!-- arka plan kutusu için hafif blur hissi -->
+    <linearGradient id="panelBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.10)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.03)"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ikon bloğu -->
+  <g>
+    <!-- yuvarlatılmış panel -->
+    <rect x="5" y="5" width="50" height="50" rx="12" ry="12"
+      fill="url(#panelBg)"
+      stroke="url(#gradBlue)"
+      stroke-width="1.5" />
+
+    <!-- data node'lar -->
+    <!-- Orta daire -->
+    <circle cx="30" cy="30" r="6" fill="url(#gradBlue)"/>
+
+    <!-- Üst sağ küçük node -->
+    <circle cx="42" cy="20" r="3.5" fill="#60a5fa"/>
+    <!-- Bağlantı -->
+    <line x1="34" y1="26" x2="40" y2="22"
+      stroke="#60a5fa"
+      stroke-width="1.5"
+      stroke-linecap="round"/>
+
+    <!-- Alt sağ küçük node -->
+    <circle cx="42" cy="38" r="3.5" fill="#2563eb"/>
+    <line x1="34" y1="34" x2="40" y2="36"
+      stroke="#2563eb"
+      stroke-width="1.5"
+      stroke-linecap="round"/>
+
+    <!-- Sol küçük node -->
+    <circle cx="20" cy="30" r="3.5" fill="#1e3a8a"/>
+    <line x1="26" y1="30" x2="22" y2="30"
+      stroke="#1e3a8a"
+      stroke-width="1.5"
+      stroke-linecap="round"/>
+
+    <!-- Mini grid hissi (metadata tabloyu çağrıştırıyor) -->
+    <rect x="16" y="16" width="10" height="2" rx="1" fill="rgba(255,255,255,0.22)"/>
+    <rect x="16" y="22" width="8" height="2" rx="1" fill="rgba(255,255,255,0.18)"/>
+    <rect x="16" y="40" width="12" height="2" rx="1" fill="rgba(255,255,255,0.12)"/>
+  </g>
+
+  <!-- metin bloğu -->
+  <g font-family="Inter, -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI', sans-serif" font-weight="500">
+    <text x="70" y="28"
+      font-size="16"
+      fill="#ffffff">
+      Data Catalog
+    </text>
+
+    <text x="70" y="44"
+      font-size="12"
+      fill="url(#gradBlue)">
+      Mini
+    </text>
+  </g>
+</svg>
