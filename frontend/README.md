@@ -1,22 +1,22 @@
 # 🎨 Frontend – Data Catalog Mini
 
-This folder contains the **React 19 (Vite)** frontend of the *Data Catalog Mini* project.  
+This folder contains the **React 19 (Vite)** frontend of the _Data Catalog Mini_ project.  
 The goal is to provide a modern, responsive, and modular interface for the Data Governance platform built on top of the .NET 8 Web API backend.
 
 ---
 
 ## 🚀 Tech Stack
 
-| Category | Technology |
-|-----------|-------------|
-| Framework | React 19 + Vite |
-| State Management | Zustand, React Query |
-| Routing | React Router v7 |
-| API Communication | Axios |
-| Utilities | clsx, date-fns |
-| Charts | Recharts |
-| Icons | Lucide React |
-| Linting & Formatting | ESLint + Prettier |
+| Category             | Technology           |
+| -------------------- | -------------------- |
+| Framework            | React 19 + Vite      |
+| State Management     | Zustand, React Query |
+| Routing              | React Router v7      |
+| API Communication    | Axios                |
+| Utilities            | clsx, date-fns       |
+| Charts               | Recharts             |
+| Icons                | Lucide React         |
+| Linting & Formatting | ESLint + Prettier    |
 
 ---
 
@@ -38,6 +38,7 @@ src/
 └── index.css # Global styles
 
 ```
+
 ---
 
 ## ⚙️ Development
@@ -52,3 +53,4 @@ npm run dev
 # Lint and format code
 npm run lint
 npm run format
+```
