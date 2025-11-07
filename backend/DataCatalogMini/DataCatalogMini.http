@@ -1,0 +1,6 @@
+@DataCatalogMini_HostAddress = http://localhost:5162
+
+GET {{DataCatalogMini_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
