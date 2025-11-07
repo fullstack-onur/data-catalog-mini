@@ -1,5 +1,6 @@
 ﻿using DataCatalogMini.Features.Login.Contracts;
 using DataCatalogMini.Features.Login.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DataCatalogMini.Features.Login
@@ -17,26 +18,54 @@ namespace DataCatalogMini.Features.Login
             _logger = logger;
         }
 
+        [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<IActionResult> Login( LoginRequest loginRequest )
+        public async Task<IActionResult> Login(LoginRequest loginRequest)
         {
-            try
+            var response = await _authService.AuthenticateAsync(loginRequest);
+
+            if (response == null)
+                return Unauthorized("Geçersiz kullanıcı adı veya şifre.");
+
+            Response.Cookies.Append("refreshToken", response.RefreshToken, new CookieOptions
             {
-                if (string.IsNullOrWhiteSpace(loginRequest.Id) || string.IsNullOrWhiteSpace(loginRequest.Password))
-                    return BadRequest("Kullanıcı adı ve şifre zorunludur.");
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Strict,
+                Expires = response.RefreshTokenExpiresAt
+            });
 
-                var response = await _authService.AuthenticateAsync(loginRequest);
-
-                if (response == null)
-                    return Unauthorized("Geçersiz kullanıcı adı veya şifre.");
-
-                return Ok(response);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Login işlemi sırasında hata oluştu");
-                return StatusCode(500, "Sunucu hatası. Lütfen daha sonra tekrar deneyin.");
-            }
+            return Ok(new { response.Token, response.ExpiresAt, response.Role });
         }
+
+        [AllowAnonymous]
+        [HttpPost("refresh")]
+        public async Task<IActionResult> Refresh()
+        {
+            var refreshToken = Request.Cookies["refreshToken"];
+            if (string.IsNullOrEmpty(refreshToken))
+                return Unauthorized();
+
+            var result = await _authService.RefreshJwtAsync(refreshToken);
+            if (result == null)
+                return Unauthorized();
+
+            return Ok(result);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("logout")]
+        public async Task<IActionResult> Logout()
+        {
+            var refreshToken = Request.Cookies["refreshToken"];
+            if (!string.IsNullOrEmpty(refreshToken))
+            {
+                await _authService.RevokeRefreshTokenAsync(refreshToken);
+            }
+
+            Response.Cookies.Delete("refreshToken");
+            return Ok();
+        }
+
     }
 }
