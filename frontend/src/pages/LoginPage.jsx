@@ -2,6 +2,7 @@ import styles from '../styles/login.module.css';
 import LoginInput from '@/components/login/LoginInput';
 import { useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useAuthStore } from '../store/useAuthStore';
 
 export default function LoginPage() {
 
@@ -9,15 +10,17 @@ export default function LoginPage() {
   const password = useRef();
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
-    // Dummy function
-    // TO DO : Integrate with real backend.
-    e.preventDefault(); 
-    localStorage.setItem("auth_token", "dummy-token");
-    if (username.current.value === "admin" && password.current.value === "admin") {
-      navigate('/');
-    } 
-  };
+  const login = useAuthStore((s) => s.login);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      await login(username.current.value, password.current.value);
+      navigate("/");
+    } catch {
+      alert("Wrong username or password!");
+    }
+  }
 
   
   return (

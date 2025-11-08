@@ -6,8 +6,8 @@ import AdminPage from '@/pages/AdminPage'
 
 
 const getAuthStatus = () => {
-  const token = localStorage.getItem('auth_token')
-  const expiresAt = localStorage.getItem('expires_at')
+  const token = localStorage.getItem('token')
+  const expiresAt = localStorage.getItem('expiresAt')
 
   if (!token || !expiresAt) return false
 
